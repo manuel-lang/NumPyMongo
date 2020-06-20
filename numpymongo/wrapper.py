@@ -3,21 +3,21 @@ import numpy as np
 import pickle as pkl
 
 def from1d(array: np.ndarray) -> list:
-    """Converts a NumPy ndarray to  a list object that can be stored in MongoDB
+    """Converts a one-dimensional NumPy ndarray to a list object that can be stored in MongoDB
 
     Args:
-        array (np.ndarray): [description]
+        array (np.ndarray): one-dimensional ndarray
 
     Returns:
-        list: [description]
+        list: list representation of the ndarray
     """
     return array.tolist()
 
 def from2d(array: np.ndarray) -> Binary:
-    """[summary]
+    """Converts a two-dimensional NumPy ndarray to a list object that can be stored in MongoDB
 
     Args:
-        array (np.ndarray): [description]
+        array (np.ndarray): two-dimensional ndarray
 
     Returns:
         Binary: pickled binary representation of the 2d ndarray
@@ -25,10 +25,10 @@ def from2d(array: np.ndarray) -> Binary:
     return Binary(pkl.dumps(array, protocol=2), subtype=128)
 
 def to1d(list: list) -> np.ndarray:
-    """[summary]
+    """Converts a list to a one-dimensional NumPy ndarray
 
     Args:
-        list (list): [description]
+        list (list): list of numbers
 
     Returns:
         np.ndarray: ndarray representation of the list
@@ -36,10 +36,10 @@ def to1d(list: list) -> np.ndarray:
     return  np.fromiter(list)
 
 def to2d(binary: Binary) -> np.ndarray:
-    """[summary]
+    """Converts a pickled binary to a one-dimensional NumPy ndarray
 
     Args:
-        binary (Binary): [description]
+        binary (Binary): pickled binary
 
     Returns:
         np.ndarray: ndarray representation of the pickled binary
@@ -47,7 +47,23 @@ def to2d(binary: Binary) -> np.ndarray:
     return pkl.loads(binary)
 
 def fromFloat(num: np.float) -> float:
+    """Converts a NumPy float that it can be stored in MongoDB
+
+    Args:
+        num (np.float): NumPy float value
+
+    Returns:
+        float: casted value
+    """
     return float(num)
 
 def fromInt(num: np.int) -> int:
+    """Converts a NumPy int that it can be stored in MongoDB
+
+    Args:
+        num (np.int): NumPy int value
+
+    Returns:
+        int: casted value
+    """
     return int(num)
